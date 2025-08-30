@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open WhatsApp</title>
+  <script>
+    // WhatsApp number (with country code, no +)
+    const whatsappNumber = "923332491993";
+
+    // Default message including website link
+    const message = "Hello! I am visiting Hasnain General Store.\nWebsite: https://ramadhanworld.github.io/Hasnainstore/";
+
+    // Build WhatsApp URL
+    const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+    // Redirect automatically
+    window.onload = () => {
+      window.location.href = waUrl;
+    };
+  </script>
+</head>
+<body>
+  <h3>Opening WhatsApp...</h3>
+  <p>If you are not redirected automatically, <a id="manual" href="#">click here</a>.</p>
+  <script>
+    document.getElementById("manual").href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+  </script>
+</body>
+</html>
