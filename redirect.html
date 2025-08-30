@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirecting to WhatsApp...</title>
+  <script>
+    // Replace with your WhatsApp number
+    const whatsappNumber = "923332491993"; 
+    
+    // Example default message
+    const message = "Hello! I want to order from Hasnain General Store.\nVisit: https://ramadhanworld.github.io/Hasnainstore/";
+    
+    // Build the wa.me link
+    const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+    // Redirect after small delay
+    window.onload = () => {
+      setTimeout(() => {
+        window.location.href = waUrl;
+      }, 500);
+    };
+  </script>
+</head>
+<body>
+  <p>Redirecting you to WhatsApp... If not, <a id="manual" href="#">click here</a>.</p>
+  <script>
+    document.getElementById("manual").href = waUrl;
+  </script>
+</body>
+</html>
