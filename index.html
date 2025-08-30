@@ -1474,15 +1474,21 @@ ${itemsList}
 
 ${orderNote ? `📝 *Special Instructions:*\n${orderNote}\n\n` : ''}Thank you for your order! 🙏`;
 
-            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`;
             
             // Clear cart and close modal
             cart = [];
             updateCart();
             closeCheckoutModal();
             
-            // Open WhatsApp
-            window.open(whatsappUrl, '_blank');
+            // Open WhatsApp - use location.href for better webview compatibility
+            if (window.navigator.userAgent.includes('wv') || window.navigator.userAgent.includes('WebView')) {
+                // If in webview, use location.href instead of window.open
+                location.href = whatsappUrl;
+            } else {
+                // If in regular browser, use window.open
+                window.open(whatsappUrl, '_blank');
+            }
             showToast('📱 Order sent to WhatsApp!', 'success');
 
             submitBtn.disabled = false;
